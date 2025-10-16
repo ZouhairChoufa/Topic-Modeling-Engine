@@ -1,91 +1,117 @@
-Topic Modeling and TF-IDF Search Engine
+Topic Modeling & TF-IDF Search Engine
 
-This project is a simple search engine that scrapes a predefined list of Wikipedia articles, processes the text, and allows users to search for information using a TF-IDF model. It also uses Latent Dirichlet Allocation (LDA) to identify the main topics within the scraped documents.
+This project is a command-line search engine built in Python. It scrapes text content from a predefined list of URLs, processes the text, and builds two different models for analysis and search:
+
+TF-IDF (Term Frequency-Inverse Document Frequency): For performing keyword-based document searches and ranking them by relevance.
+
+LDA (Latent Dirichlet Allocation): For identifying the main topics or themes present across the entire collection of documents.
+
+The application allows a user to enter a search query and, in response, it returns the most relevant documents along with a visualization of the underlying topics in the corpus.
 
 Features
 
-Scrapes text content from a list of URLs.
+Web Scraping: Fetches content from a list of URLs.
 
-Preprocesses text data: cleaning, lemmatization, and stop-word removal for both French and English.
+Text Processing: Cleans, tokenizes, lemmatizes, and removes stop words from text in both English and French.
 
-Builds a TF-IDF (Term Frequency-Inverse Document Frequency) model for information retrieval.
+TF-IDF Search: Ranks documents based on cosine similarity to a user's query.
 
-Builds an LDA (Latent Dirichlet Allocation) model for topic modeling.
+LDA Topic Modeling: Discovers abstract topics from the text content.
 
-Provides an interactive command-line interface to:
+Data Visualization: Generates plots for TF-IDF scores and LDA topic-word distributions.
 
-Search for a query and get a ranked list of relevant documents.
+Caching: Saves processed data to speed up subsequent runs.
 
-Visualize the TF-IDF similarity scores.
+Project Structure
 
-Visualize the topics discovered by the LDA model.
+.
+├── notebooks/
+│   └── Final Code Topic Modling and Tf-IDF.ipynb
+├── src/
+│   ├── __init__.py
+│   ├── data_processing.py
+│   ├── modeling.py
+│   └── visualization.py
+├── .gitignore
+├── app.py
+├── LICENSE
+├── README.md
+└── requirements.txt
 
-Caches processed data to speed up subsequent runs.
-
-Getting Started
-
-Follow these instructions to get a copy of the project up and running on your local machine.
-
-Prerequisites
-
-Python 3.8 or higher
-
-pip for installing packages
 
 Installation
 
 Clone the repository:
 
-git clone <your-repository-url>
-cd <your-repository-name>
+git clone [https://github.com/your-username/Topic-Modeling-Engine.git](https://github.com/your-username/Topic-Modeling-Engine.git)
+cd Topic-Modeling-Engine
 
 
-Create and activate a virtual environment (recommended):
+Create a virtual environment (recommended):
 
-# For macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-
-# For Windows
 python -m venv venv
-.\venv\Scripts\activate
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
 
-Install the required Python packages:
+Install the required dependencies:
 
 pip install -r requirements.txt
 
 
-Download the spaCy language models:
-This project requires models for French and English to process the text.
+Download SpaCy language models:
+The application requires language models for English and French.
 
+python -m spacy download en_core_web_sm
 python -m spacy download fr_core_news_sm
-python -m spacy download en_core_news_sm
 
 
 Usage
 
-To start the application, run the app.py script from the root directory of the project:
+To run the application, execute the app.py script from the root directory:
 
 python app.py
 
 
-The first time you run the script, it will scrape the websites, process the text, and build the models. This may take a few minutes. The processed data will be saved to cached_data.pkl to make future launches much faster.
+The script will first attempt to load cached data. If no cache is found, it will scrape the URLs, process the text, and build the models. This initial run may take a few minutes.
 
-Once the models are ready, you will be prompted to enter a search query in the console. Type your query and press Enter to see the results.
+Once the models are ready, you will be prompted to enter a search query in the terminal.
 
-To exit the program, type exit and press Enter.
+Enter your query (or 'exit' to quit): intelligence artificielle
 
-Project Structure
 
-.
-├── .gitignore
-├── LICENSE
-├── README.md
-├── app.py                 # Main application script
-├── requirements.txt       # Python dependencies
-└── src/
-    ├── __init__.py
-    ├── data_processing.py # Functions for data fetching and cleaning
-    ├── modeling.py        # Functions for TF-IDF and LDA models
-    └── visualization.py   # Functions for plotting graphs
+The program will display the search results, followed by plots visualizing the TF-IDF scores and the LDA topics.
+
+Deploying to GitHub
+
+To push this project to a new GitHub repository, follow these steps:
+
+Initialize a local Git repository:
+
+git init
+
+
+Add all files to staging:
+
+git add .
+
+
+Commit the files:
+
+git commit -m "Initial commit: Project setup"
+
+
+Rename the default branch to main:
+GitHub's standard is main, while Git's local default might be master.
+
+git branch -M main
+
+
+Connect to your remote GitHub repository:
+Replace the URL with your own repository's URL.
+
+git remote add origin [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+
+
+Push your code to GitHub:
+
+git push -u origin main

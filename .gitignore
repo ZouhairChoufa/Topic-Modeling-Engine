@@ -5,6 +5,10 @@ pycache/
 *.pyo
 *.pyd
 
+.env
+
+.ipynb_checkpoints/
+
 C extensions
 
 *.so
